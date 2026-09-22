@@ -49,19 +49,40 @@
         ['¿Y con una pizza? 🍕', 'La amistad incluye memes de calidad dudosa.', 'tengo una propuesta muy seria'],
         ['Déjame pensarlo…', 'También guardo un lugar para ti en mis mejores días.', 'activando los ojitos tiernos'],
         ['Todavía no 🙈', 'Bueno, el botón rosa se emocionó un poquito.', 'creo que ya sabes mi respuesta'],
-        ['Hoy no, gracias', 'Fuera de bromas: te quiero igual, elijas lo que elijas. ♡', 'sin presión, con mucho cariño']
+        ['Hoy no, gracias', 'Fuera de bromas: te quiero igual, elijas lo que elijas. ♡', 'sin presión, con mucho cariño'],
+        ['¿Y un heladito? 🍦', 'Tú eliges el sabor; yo llevo las ganas de reír.', 'preparando el plan de la tarde'],
+        ['Me falta un meme 😼', 'Tengo una colección reservada para hacerte sonreír.', 'buscando mi mejor meme'],
+        ['Lo consulto con mi gato', 'El comité de gatitos ya está reunido.', 'reunión extraordinaria de michis'],
+        ['Necesito un cafecito ☕', 'Y una charla de esas que se nos van de las manos.', 'esto merece una conversación larga'],
+        ['Aún lo pienso 🤔', 'Mi propuesta incluye escuchar tus historias completas.', 'sí, también la versión con todos los detalles'],
+        ['¿Hay papitas? 🍟', 'Para ti siempre guardo unas… voy a intentarlo.', 'negociaciones importantes sobre papitas'],
+        ['Primero una película 🎬', 'Tú eliges la peli. Las palomitas se comparten.', 'listo para nuestro maratón'],
+        ['Sigo indecisa 🙃', 'No hay prisa, Luz. Aquí todavía quedan muchos gatitos.', 'paciencia nivel michi'],
+        ['¿Y una aventura? ✨', 'Hasta una vuelta a la esquina puede ser un buen recuerdo.', 'planeando nuestra próxima anécdota'],
+        ['Voy a pedir otra opinión', 'Este gatito recomienda más risas y menos madrugones.', 'mi asesor acaba de despertarse'],
+        ['Falta la playlist 🎶', 'Podemos cantar fatal y pasarla increíble.', 'ensayando nuestro concierto privado'],
+        ['¿Incluye chismecito? 👀', 'Incluye un «cuéntame todo» con atención de verdad.', 'soy todo oídos, Luz'],
+        ['Dame otro ratito ⏳', 'Las buenas amistades también saben esperar.', 'mientras tanto, una siestita'],
+        ['¿Y en mis días raros?', 'También. No tienes que estar de buen humor para contar conmigo.', 'los días grises también se acompañan'],
+        ['Quiero más pruebas 📋', 'Prueba número uno: hice que estos gatitos vinieran por ti.', 'mi currículum está lleno de memes'],
+        ['Todavía puedo decir no 😌', 'Claro que sí. Esto es un juego; el cariño va en serio.', 'tu respuesta la eliges tú'],
+        ['¿Un abrazo primero? 🤗', 'Hay uno guardado para cuando lo quieras.', 'patitas listas para abrazar'],
+        ['Me estás dando risa 😂', 'Entonces los gatitos ya cumplieron su misión.', 'una sonrisa tuya ya es una victoria'],
+        ['Una última pensadita 💭', 'Qué bonito coincidir contigo entre tanta gente.', 'de todas las personas, qué suerte encontrarte'],
+        ['Otra ronda de gatitos 🐾', 'Volvemos al principio, pero con el mismo cariño por ti.', 'estos michis tienen energía para otra vuelta']
       ];
       let count = 0;
       let cleanup;
       $('no').addEventListener('click', () => {
-        const step = steps[Math.min(count, steps.length - 1)];
-        count = Math.min(count + 1, steps.length);
+        const step = steps[count % steps.length];
+        count += 1;
         $('no').textContent = step[0]; $('hint').textContent = step[1]; $('caption').textContent = step[2];
         const photo = catPhotos[photoIndex % catPhotos.length];
         photoIndex += 1;
         $('cat').src = photo.src; $('cat').alt = photo.alt;
-        $('yes').style.fontSize = (17 + count * 2) + 'px';
-        $('yes').style.padding = (17 + count * 3) + 'px ' + (27 + count * 2) + 'px';
+        const growth = Math.min(count, 5);
+        $('yes').style.fontSize = (17 + growth * 2) + 'px';
+        $('yes').style.padding = (17 + growth * 3) + 'px ' + (27 + growth * 2) + 'px';
       });
       $('yes').addEventListener('click', () => {
         $('question').hidden = true; $('success').hidden = false;
